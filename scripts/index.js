@@ -14,8 +14,15 @@ const initialData = [
 
 function createTodo(itemData) {
     const newTask = taskTemplate.content.querySelector('.tasks__item').cloneNode(true);
+    const cardText = newTask.querySelector('.tasks__text');
+    const cardRemoveButton = newTask.querySelector('.tasks__trash');
 
-    newTask.querySelector('.tasks__text').textContent = itemData;
+    cardText.textContent = itemData;
+
+    cardRemoveButton.addEventListener('click', function(e) {
+        console.log('Click!');
+        e.target.closest('.tasks__item').remove();
+    });
 
     return newTask;
 }
