@@ -12,19 +12,21 @@ const initialData = [
     'Поработать с гит-флоу',
 ];
 
-initialData.forEach(function(currentItem) {
+function createTodo(itemData) {
     const newTask = taskTemplate.content.querySelector('.tasks__item').cloneNode(true);
 
-    newTask.querySelector('.tasks__text').textContent = currentItem;
+    newTask.querySelector('.tasks__text').textContent = itemData;
 
-    tasksContainer.append(newTask);
+    return newTask;
+}
+
+initialData.forEach(function(currentItem) {
+    const newCard = createTodo(currentItem);
+    tasksContainer.append(newCard);
 });
 
 button.addEventListener('click', function() {
     const taskValue = input.value;
-    const newTask = taskTemplate.content.querySelector('.tasks__item').cloneNode(true);
 
-    newTask.querySelector('.tasks__text').textContent = taskValue;
-
-    tasksContainer.append(newTask);
+    tasksContainer.append(createTodo(taskValue));
 });
